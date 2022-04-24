@@ -9,4 +9,6 @@ app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
-})
+});
+
+app.use('/api/users', require('./routes/userRoutes'));
