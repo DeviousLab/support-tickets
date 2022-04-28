@@ -1,20 +1,20 @@
-import { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 export const useAuthStatus = () => {
-  const [loggedIn, setLoggedIn] = useState(false)
-  const [checkingStatus, setCheckingStatus] = useState(true)
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const { user } = useSelector((state) => state.auth)
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (user) {
-      setLoggedIn(true)
+      setIsAuthenticated(true);
     } else {
-      setLoggedIn(false)
+      setIsLoading(false);
     }
-    setCheckingStatus(false)
-  }, [user])
-
-  return { loggedIn, checkingStatus }
+    setIsLoading(false);
+  }, [user]);
+  
+  return { isAuthenticated, isLoading };
 }
